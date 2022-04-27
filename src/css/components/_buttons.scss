@@ -1,0 +1,60 @@
+@use "../base/typography" as *;
+
+.button,
+button {
+  --bg-color: var(--color-gray-800);
+  --bg-color-hover: var(--color-gray-900);
+  --color-border: var(--color-gray-900);
+  --color-border-hover: var(--color-gray-900);
+  --color-text: var(--color-gray-50);
+  --color-text-hover: var(--color-gray-50);
+  border: 2px solid var(--color-border);
+  background: var(--bg-color);
+  padding: 0.5rem 1.6rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  // @extend .font-bold;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+  &:hover,
+  &:focus {
+    background: var(--bg-color-hover);
+    color: var(--color-text-hover);
+    border: 2px solid var(--color-border-hover);
+  }
+  &[disabled="true"] {
+    pointer-events: none;
+  }
+}
+
+.button-primary {
+  --bg-color: linear-gradient(
+    61deg,
+    var(--color-primary-300) 29%,
+    var(--color-secondary-300) 100%
+  );
+  --bg-color-hover: linear-gradient(
+    61deg,
+    var(--color-primary-300) 29%,
+    var(--color-secondary-300) 100%
+  );
+  --color-border: var(--color-primary-300);
+  --color-border-hover: var(--color-primary-300);
+  --color-text: var(--color-gray-900);
+  --color-text-hover: var(--color-gray-50);
+
+  @extend .button;
+}
+
+.button-white {
+  --bg-color: var(--color-gray-900);
+  --bg-color-hover: var(--color-gray-100);
+  --color-border: var(--color-gray-100);
+  --color-border-hover: var(--color-gray-100);
+  --color-text: var(--color-gray-50);
+  --color-text-hover: var(--color-gray-900);
+
+  @extend .button;
+}

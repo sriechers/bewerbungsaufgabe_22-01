@@ -1,0 +1,23 @@
+@use "../mixins/loading-spinner" as *;
+
+*[data-is-loading="true"] {
+  &::before {
+    content: "";
+    display: block;
+    inset: 0;
+    margin: auto;
+    @include loading-spinner(var(--color-gray-100));
+  }
+}
+*[data-is-loading="false"] {
+  opacity: 1;
+  &::before {
+    content: none;
+  }
+}
+*[data-error="true"] {
+  opacity: 1;
+  &::before {
+    content: none;
+  }
+}

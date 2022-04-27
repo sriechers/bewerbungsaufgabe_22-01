@@ -1,0 +1,21 @@
+html,
+body {
+  background-color: var(--color-gray-800);
+  scroll-padding: 13vh;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary-300);
+  transition: all 150ms ease-out;
+  &:active,
+  &:focus,
+  &:hover {
+    color: var(--color-primary-200);
+  }
+}
+
+::selection {
+  color: var(--color-gray-900);
+  background-color: var(--color-primary-300);
+}

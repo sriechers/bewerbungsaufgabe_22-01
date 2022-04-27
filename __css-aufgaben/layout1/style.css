@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0.5rem;
+}
+
+.layout-1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-1 .box:nth-child(1) {
+  border-left: 0.5rem solid rgb(57, 110, 242);
+}
+.layout-1 .box:nth-child(2) {
+  border-left: 0.5rem solid rgb(23, 43, 92);
+}
+.layout-1 .box:nth-child(3) {
+  border-left: 0.5rem solid rgb(242, 153, 57);
+}
+
+.layout-1 .box {
+  background-color: rgb(245, 239, 205);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-basis: 33.3333%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .layout-1 {
+    flex-direction: row;
+  }
+  .layout-1 .box:nth-child(1),
+  .layout-1 .box:nth-child(2) {
+    margin-right: 1rem;
+  }
+}

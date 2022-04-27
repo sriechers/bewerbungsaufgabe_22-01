@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0.5rem;
+}
+
+header {
+  grid-area: header;
+}
+nav {
+  grid-area: navigation;
+}
+main {
+  grid-area: main-content;
+}
+aside {
+  grid-area: sidebar;
+}
+footer {
+  grid-area: footer;
+}
+
+.layout-2 > * {
+  background-color: rgb(227, 227, 227);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .layout-2 {
+    display: grid;
+    gap: 1rem;
+    grid-template-areas:
+      "header header header header"
+      "navigation main-content main-content sidebar"
+      ". footer footer .";
+  }
+  .layout-2 > * {
+    margin-bottom: 0;
+  }
+}

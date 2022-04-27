@@ -1,0 +1,43 @@
+@use '../abstracts/colors' as *;
+@use '../mixins/media-queries' as *;
+@use '../abstracts/type-scale' as *;
+
+:root {
+  // importierte Farben in CSS Variablen umwandeln.
+  // Output Beispiel: --color-primary-100: Farbwert;
+  @each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      --color-#{$color}-#{$shade}: #{$value};
+      // shadow Klassen erzeugen
+      --shadow-#{$color}-#{$shade}: rgba(
+        #{red($value)},
+        #{green($value)},
+        #{blue($value)},
+        0.7
+      );
+    }
+  }
+
+  // importierte Schriftgrößen je nach Media Query ausgeben und in CSS Variablen umwandeln.
+  @each $screen-size, $font-size in $type-scale {
+    @if $screen-size == base {
+      // setze Standardwerte für Schriftgrößen
+      @each $size, $value in $font-size {
+        --font-#{$size}: #{$value};
+      }
+    } @else {
+      // ändere Schriftgrößen ab Breakpoint (Media Query)
+      @include mq(sm) {
+        @each $size, $value in $font-size {
+          --font-#{$size}: #{$value};
+        }
+      }
+    }
+  }
+
+  // Utilities
+  --rounded-full: 5000px;
+  --rounded-sm: 0.8rem;
+  --rounded-md: 1rem;
+  --rounded-lg: 1.3rem;
+}

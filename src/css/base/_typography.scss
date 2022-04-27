@@ -1,0 +1,101 @@
+/* lato-regular - latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(""),
+    url("../../fonts/lato-v22-latin-regular.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../fonts/lato-v22-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-700 - latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(""), url("../../fonts/lato-v22-latin-700.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../fonts/lato-v22-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* lato-900 - latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: local(""), url("../../fonts/lato-v22-latin-900.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../fonts/lato-v22-latin-900.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+body,
+html {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: var(--font-4xl);
+  color: var(--color-gray-50);
+  margin-bottom: 0.4em;
+  margin-top: 0.25em;
+  letter-spacing: 0.9;
+  font-weight: 900;
+}
+
+h2 {
+  font-size: var(--font-3xl);
+  color: var(--color-gray-50);
+  margin-bottom: 0.4em;
+  margin-top: 0.25em;
+  font-weight: 900;
+}
+
+h3 {
+  font-size: var(--font-2xl);
+  color: var(--color-gray-50);
+  margin-bottom: 0.4em;
+  margin-top: 0.25em;
+  font-weight: 900;
+}
+
+h4 {
+  font-size: var(--font-xl);
+  color: var(--color-gray-50);
+  margin-bottom: 0.4em;
+  margin-top: 0.25em;
+  font-weight: 900;
+}
+
+p {
+  font-size: var(--font-base);
+  color: var(--color-gray-100);
+  letter-spacing: 0.01em;
+  margin-bottom: 1em;
+  margin-top: 0.65em;
+  line-height: 1.8;
+}
+
+.caption {
+  color: var(--color-gray-50);
+  font-size: var(--font-sm);
+}
+
+.caption-small {
+  color: var(--color-gray-50);
+  font-size: var(--font-xs);
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-black {
+  font-weight: 900;
+}

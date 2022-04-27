@@ -1,0 +1,41 @@
+@keyframes fadeInAndUp {
+  0% {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@mixin add-animation(
+  $name,
+  $time: 500ms,
+  $easing: ease-in-out,
+  $mode: forwards,
+  $delay: 0s,
+  $loop: ""
+) {
+  animation: #{$name} #{$time} #{$easing} #{$delay} #{$mode} #{$loop};
+}

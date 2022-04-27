@@ -1,0 +1,28 @@
+@use '../abstracts/breakpoints' as *;
+@use '../mixins/media-queries' as *;
+
+$measureSizeBase: map-get($breakpoints, xl);
+$measureSizeLarge: map-get($breakpoints, 2xl);
+
+.measure-base {
+  max-width: $measureSizeBase;
+  margin: 0 auto;
+}
+
+.measure-large {
+  max-width: $measureSizeLarge;
+  margin: 0 auto;
+}
+
+.scaffold {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @include mq(md) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  @include mq(lg) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}

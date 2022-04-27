@@ -1,0 +1,319 @@
+@use "../base/util" as *;
+@use "../mixins/media-queries" as *;
+@use "../mixins/hide-scrollbar" as *;
+@use "../mixins/loading-spinner" as *;
+@use "../base/typography" as *;
+@use "../mixins/animations" as animations;
+
+.current-weather-widget {
+  padding: 2rem 3.5rem;
+  position: relative;
+  background: linear-gradient(
+    61deg,
+    var(--color-primary-300) 29%,
+    var(--color-secondary-300) 100%
+  );
+  border-radius: var(--rounded-sm);
+  transition: opacity 1s ease-in-out;
+  opacity: 0.6;
+  margin-bottom: 2.8rem;
+  height: 38rem;
+  @include mq(sm) {
+    height: 22rem;
+  }
+  @include mq(md) {
+    height: 23.3rem;
+  }
+  @include mq(lg) {
+    height: 17rem;
+  }
+  &[data-is-loading="true"] {
+    &::before {
+      content: "";
+      display: block;
+      inset: 0;
+      margin: auto;
+      @include loading-spinner(var(--color-gray-100));
+    }
+  }
+  &[data-is-loading="false"] {
+    opacity: 1;
+  }
+  &[data-error="true"] {
+    opacity: 1;
+    &::before {
+      content: none;
+    }
+  }
+  .error-text {
+    text-align: center;
+    color: var(--color-gray-900);
+  }
+  .region {
+    font-size: 3rem;
+    @include mq(md) {
+      font-size: 4rem;
+    }
+    color: #fff;
+    margin-top: 0;
+    @extend .font-black;
+    @include animations.add-animation(fadeInAndUp);
+  }
+  .temperature {
+    font-size: 3rem;
+    @include mq(md) {
+      font-size: 4rem;
+    }
+    color: #fff;
+    @extend .font-black;
+    white-space: nowrap;
+    margin: 0 0 0 0.8rem;
+    line-height: 1.3;
+  }
+  .weather-icon {
+    object-fit: contain;
+    height: 5rem;
+    width: 5rem;
+  }
+  .weather-infos {
+    @include mq(lg) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .weather-current-temperature {
+    opacity: 0;
+    @include animations.add-animation(
+      fadeInAndUp,
+      500ms,
+      ease-in-out,
+      forwards,
+      0.3s
+    );
+  }
+  .weather-details-container {
+    max-width: fit-content;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 1;
+    @include mq(sm) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 0;
+      margin-right: auto;
+    }
+    @include mq(lg) {
+      margin-top: 0;
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+  .weather-details {
+    margin-bottom: 1rem;
+    opacity: 0;
+    &:first-child {
+      @include animations.add-animation(
+        fadeInAndUp,
+        500ms,
+        ease-in-out,
+        forwards,
+        0.5s
+      );
+    }
+    &:nth-child(2) {
+      @include animations.add-animation(
+        fadeInAndUp,
+        500ms,
+        ease-in-out,
+        forwards,
+        0.7s
+      );
+    }
+    &:last-child {
+      @include animations.add-animation(
+        fadeInAndUp,
+        500ms,
+        ease-in-out,
+        forwards,
+        0.9s
+      );
+    }
+    &:not(:last-child) {
+      padding-bottom: 0.7rem;
+      border-bottom: 2px solid rgba(#fff, 0.1);
+    }
+    @include mq(sm) {
+      margin-left: 2rem;
+      margin-bottom: 0;
+      &:not(:last-child) {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+    }
+    &:first-child {
+      margin-left: 0;
+      @include mq(lg) {
+        margin-left: 2rem;
+      }
+    }
+    h4 {
+      color: #fff;
+      margin: 0;
+      font-size: 1.4rem;
+      text-align: center;
+      @extend .font-bold;
+      @include mq(sm) {
+        text-align: left;
+        font-size: 1.2rem;
+      }
+      @include mq(lg) {
+        font-size: 1.6rem;
+      }
+    }
+    p {
+      color: #fff;
+      @extend .font-black;
+      font-size: 2.4rem;
+      text-align: center;
+      margin: 0;
+      @include mq(sm) {
+        text-align: left;
+        font-size: 2rem;
+      }
+      @include mq(md) {
+        font-size: 2.6rem;
+      }
+    }
+  }
+}
+
+.weather-forecast-widget {
+  padding-left: 0;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 3rem;
+  transition: opacity 1s ease-in-out;
+  opacity: 0.6;
+  height: 10rem;
+  @include hide-scrollbar();
+  &[data-is-loading="true"] {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    // background-color: var(--color-gray-900);
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      @include loading-spinner(var(--color-gray-100), 0.3);
+    }
+  }
+  &[data-is-loading="false"] {
+    opacity: 1;
+  }
+  &[data-error="true"] {
+    opacity: 1;
+    &::before {
+      content: none;
+    }
+  }
+  li {
+    list-style: none;
+    scroll-snap-align: center;
+    padding: 0.8rem 1rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 30%;
+    @include mq(md) {
+      flex-basis: 20%;
+    }
+    border-radius: var(--rounded-lg);
+    margin-right: 1.5rem;
+    background: var(--color-gray-900);
+    border: 2px solid hsl(0, 0%, 6%);
+    opacity: 0;
+    &:first-child {
+      flex-basis: 48%;
+      @include mq(md) {
+        flex-basis: 40%;
+      }
+      margin-left: 1rem;
+      @include mq(md) {
+        margin-left: 2rem;
+      }
+      @include mq(lg) {
+        margin-left: 4rem;
+      }
+    }
+    @for $i from 1 through 8 {
+      &:nth-child(#{$i}) {
+        @include animations.add-animation(
+          fadeInFromLeft,
+          500ms,
+          ease-in-out,
+          forwards,
+          0.5 + ($i * 0.2) + #{s}
+        );
+      }
+    }
+    img {
+      margin: 0 auto;
+      display: block;
+    }
+    h3 {
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .max-temp,
+    .min-temp {
+      @extend .font-bold;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .temperatures {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+      max-width: 8rem;
+      margin: 0 auto;
+      span {
+        color: var(--color-gray-500);
+        line-height: 1;
+        margin-top: -0.5em;
+      }
+    }
+    .min-temp {
+      color: var(--color-gray-500);
+    }
+  }
+}
+
+.get-user-location-button {
+  position: relative;
+  &[data-is-loading="true"] {
+    opacity: 0.5;
+    &::before {
+      content: "";
+      @include loading-spinner(currentColor, 0.2);
+    }
+  }
+  &[data-is-loading="false"] {
+    opacity: 1;
+    &::before {
+      content: none;
+    }
+  }
+}
