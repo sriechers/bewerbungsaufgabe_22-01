@@ -93,7 +93,9 @@ export const getUserLocation = async (options) => {
 export const getUserLocationCity = async (forceUpdate = false) => {
   const storedLocation = localStorage.getItem("user-location-city");
 
-  if (storedLocation && !forceUpdate) return storedLocation;
+  if (storedLocation && !forceUpdate) {
+    return storedLocation;
+  }
 
   try {
     const location = await getUserLocation();
@@ -110,7 +112,26 @@ export const getUserLocationCity = async (forceUpdate = false) => {
     localStorage.setItem("user-location-city", city);
     return city;
   } catch (error) {
-    console.error(error);
+    let errorMsg;
+    switch (error.code) {
+      case 1:
+        errorMsg =
+          "Es wurde keine Erlaubnis zum Abrufen des Standortes erteilt.";
+        break;
+      case 2:
+        errorMsg = "Der aktuelle Standort konnte nicht ermittelt werden.";
+        break;
+      case 3:
+        errorMsg =
+          "Die Verbindung zum Standortdienst hat zu lange gedauert und wurde abgebrochen.";
+        break;
+      default:
+        errorMsg =
+          error?.message ||
+          "Es ist ein Fehler beim Abrufen der Standortdaten aufgetreten.";
+        break;
+    }
+    throw errorMsg;
   }
 };
 
