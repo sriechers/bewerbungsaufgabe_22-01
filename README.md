@@ -45,4 +45,4 @@ Das CSS Box-Modell definiert, wie Elemente im Browser dargestellt werden bzw. we
 
 100px Höhe inklusive 20px Padding (oben) + 20px Padding (unten), 10px Margin (oben) + 10px Margin (unten) = 100px Höhe und 20px Margin[^1]
 
-[^1]: Das gleiche gilt natürlich auch für die Breite des Elements.
+[^1]: Das Gleiche gilt natürlich auch für die Breite des Elements.
